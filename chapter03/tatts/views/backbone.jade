@@ -7,18 +7,25 @@ table.table.table-bordered.table-condensed
       th Race
       th Type
       th Places
-  tbody
-    each meeting in meetings
-      tr
-        td
-          span.label= meeting.date
-        td
-          span.label= meeting.time
-        td
-          span.label= meeting.venue
-        td
-          span.badge= meeting.race
-        td
-          span.badge= meeting.meetingType
-        td
-          span.badge.badge-success= meeting.places
+      th Done
+
+// Templates
+script#raceinfo-template(type="text/template")
+    td
+      span.label <%= date %>
+    td
+      span.label <%=  time %>
+    td
+      span.label <%=  venue %>
+    td
+      span.badge <%=  race %>
+    td
+      span.badge <%=  meetingType %>
+    td
+      span.badge <%=  places %>
+    td
+      input.toggleItem(type='checkbox')
+
+
+script(src='/javascripts/backbone.js', type='text/javascript')
+
