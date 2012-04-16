@@ -6,7 +6,6 @@ var exec = require('child_process').exec
  * @param url
  */
 function fetchURL(url, callback) {
-
     var child;
     var command = 'wget -q -O - ' + url + ' | sed "1 s/^\\xef\\xbb\\xbf//"';
     child = exec(command,
@@ -19,7 +18,6 @@ function fetchURL(url, callback) {
 function getMeetings(callback) {
 
     var url = "http://tatts.com/pagedata/racing/2012/3/4/RaceDay.xml";
-
     
     fetchURL(url, function (err, stdout, stderr) {
 
@@ -68,9 +66,4 @@ function getMeetings(callback) {
     });
 }
 
-
-getMeetings(function (err, meetings) {
-    for (var i = 0; i < meetings.length; i++) {
-        console.log(meetings[i]);
-    }
-});
+module.exports.getMeetings = getMeetings;
