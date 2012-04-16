@@ -31,16 +31,23 @@ app.configure('production', function(){
 // Routes
 app.get('/', routes.index);
 
+var cached;
 app.get('/api/raceinfo', function(req, res) {
-  tatts.getMeetings(function(err, meetings) {
-    if (err) {
-      console.log(err);
-      res.write('parsing error');
-    }
-    else {
-      return res.send(meetings);
-    }
-  }); 
+  if (cached) {
+    return res.send(cached);
+  }
+  else {
+    tatts.getMeetings(function(err, meetings) {
+      if (err) {
+        console.log(err);
+        res.write('parsing error');
+      }
+      else {
+        cached = meetings;
+        return res.send(meetings);
+      }
+    });     
+  }
   
 });
 
@@ -55,7 +62,6 @@ app.get('/raceinfo', function(req, res) {
       res.write('parsing error');
     }
     else {
-      console.log(meetings[0]);
       res.render('raceinfo.jade', {title: 'Race Info', locals: {meetings: meetings}});
     }
   });    

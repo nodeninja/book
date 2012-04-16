@@ -25,8 +25,9 @@
         // Filter down the list of all place terms that pay three or less
         threeOrLess: function() {
 
+
             var lowTerms = this.filter(function(placeTerm){
-                return placeTerm.toJSON().placeTerms == 3;
+                return placeTerm.toJSON().places <= 3;
             });
             return lowTerms;
         }
@@ -42,7 +43,6 @@
 
         events:{
             'click input.toggleItem': 'done'
-
         },
 
         initialize:function () {
@@ -50,26 +50,14 @@
             var viewModel = this.model;
             _.bindAll(this, 'render');
             this.model.bind('change', this.render);
-            this.model.bind('remove', this.unrender);
             this.model.on("change:toggled", this.toggle, this);
 
         },
 
         render:function () {
-            $(this.el).html(this.placeTermTemplate(this.model.toJSON()));
+            $(this.el).html(this.raceInfoTemplate(this.model.toJSON()));
             return this; // for chainable calls, like .render().el
 
-        },
-
-        // `unrender()`: Makes Model remove itself from the DOM.
-        unrender:function () {
-            $(this.el).remove();
-        },
-
-        // `remove()`: We use the method `destroy()` to remove a model from its collection. Normally this would also delete the record from its persistent storage, but we have overridden that (see above).
-        remove:function () {
-            alert('destroying');
-            this.model.destroy();
         },
 
         done: function() {
@@ -77,8 +65,6 @@
         },
 
         toggle: function() {
-
-
             if (this.model.toJSON().toggled) {
                 $(this.el).hide();
             }
@@ -89,8 +75,8 @@
 
     });
 
-    // **ListView class**: Our main app view.
-    var ListView = Backbone.View.extend({
+    // Our main app view.
+    var RaceAppView = Backbone.View.extend({
 
         el:$('body'), // attaches `this.el` to an existing element.
 
@@ -98,17 +84,16 @@
             'click input.togglePlaceTerms': 'togglePlaceTerms'
         },
 
-        // `initialize()`: Automatically called upon instantiation.
-        // Where you make all types of bindings, _excluding_ UI events, such as clicks, etc.
         initialize:function () {
 
-            _.bindAll(this, 'render', 'appendItem'); // fixes loss of context for 'this' within methods
+            // fixes loss of context for 'this' within methods
+            _.bindAll(this, 'render', 'appendItem'); 
 
-            window.placeTermList = new PlaceTermList;
+            window.raceInfoList = new RaceInfoList;
             var self = this;
-            placeTermList.fetch({
+            raceInfoList.fetch({
                 success: function() {
-                    self.render(); // not all views are self-rendering. This one is.
+                    self.render(); 
                 },
 
                 error: function() {
@@ -119,30 +104,25 @@
 
         },
 
-        // `render()`: Function in charge of rendering the entire view in `this.el`.
-        // Needs to be manually called by the user.
         render:function () {
-            var self = this;
-            //$('body').append("<button id='add'>Add list item</button>");
-            _(placeTermList.models).each(function (item) { // in case collection is not empty
-                self.appendItem(item);
+            _(raceInfoList.models).each(function (item) { 
+                this.appendItem(item);
             }, this);
 
         },
 
         appendItem:function (item) {
-            var itemView = new PlaceTermView({model:item});
+            var itemView = new RaceInfoView({model:item});
             $('thead').append(itemView.render().el);
         },
 
         togglePlaceTerms:function () {
-            console.log('toggling');
-            _.each(placeTermList.twoOrLess(), function(placeTerm) {
-                placeTerm.toggle();
+            _.each(raceInfoList.threeOrLess(), function(raceInfo) {
+                raceInfo.toggle();
             });
         }
     });
 
-    // **listView instance**: Instantiate main app view.
-    var listView = new ListView();
+    // Instantiate main app view.
+    var view = new RaceAppView();
 })(jQuery);

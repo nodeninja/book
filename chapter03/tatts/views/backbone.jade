@@ -1,3 +1,7 @@
+form.well.form-search
+  label.checkbox
+    input.togglePlaceTerms(type='checkbox')
+    | &nbsp; Toggle Terms
 table.table.table-bordered.table-condensed
   thead
     tr
@@ -9,8 +13,8 @@ table.table.table-bordered.table-condensed
       th Places
       th Done
 
-// Templates
-script#raceinfo-template(type="text/template")
+// Client Side Templates
+script#raceInfo-template(type="text/template")
     td
       span.label <%= date %>
     td
@@ -22,10 +26,12 @@ script#raceinfo-template(type="text/template")
     td
       span.badge <%=  meetingType %>
     td
-      span.badge <%=  places %>
+      span.badge.badge-success <%=  places %>
     td
       input.toggleItem(type='checkbox')
 
-
-script(src='/javascripts/backbone.js', type='text/javascript')
+script(src='http://nodeninja.github.com/book/chapter03/jquery.js', type='text/javascript')
+script(src='http://nodeninja.github.com/book/chapter03/underscore-min.js', type='text/javascript')
+script(src='http://nodeninja.github.com/book/chapter03/backbone-min.js', type='text/javascript')
+script(src='/javascripts/mybackboneapp.js', type='text/javascript')
 
