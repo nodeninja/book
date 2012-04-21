@@ -55,6 +55,10 @@ app.get('/backbone', function(req, res) {
   res.render('backbone.jade', {title: 'Backbone'});    
 });
 
+app.get('/ember', function(req, res) {
+  res.render('ember.jade', {title: 'Ember'});    
+});
+
 app.get('/raceinfo', function(req, res) {
   tatts.getMeetings(function(err, meetings) {
     if (err) {

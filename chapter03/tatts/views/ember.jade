@@ -1,0 +1,41 @@
+script(src='http://nodeninja.github.com/book/chapter03/jquery.js', type='text/javascript')
+script(src='http://nodeninja.github.com/book/chapter03/ember.min.js', type='text/javascript')
+script(src='/javascripts/myemberapp.js', type='text/javascript')
+
+
+#container
+
+// Client Side Templates
+script(type='text/x-handlebars', data-template-name='raceInfo')
+  <form class="well form-search">
+  <label class="checkbox">
+  <input class="togglePlaceTerms" type="checkbox" {{action "toggle"}}> &nbsp; Toggle Terms
+  </form>
+  </label>
+  <table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+  <th>Date</th>
+  <th>Time</th>
+  <th>Venue</th>
+  <th>Race</th>
+  <th>Type</th>
+  <th>Places</th>
+  <th>Done</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each RaceApp.raceController.content}}
+  <tr>
+  <td><span class="label">{{date}}</span></td>
+  <td><span class="label">{{time}}</span></td>
+  <td><span class="label">{{venue}}</span></td>
+  <td><span class="badge">{{race}}</span></td>
+  <td><span class="badge">{{type}}</span></td>
+  <td><span class="badge badge-success">{{places}}</span></td>
+  <td><input class="toggleItem" type="checkbox" {{action "hideRow"}}></input></td>
+  </tr>
+  {{/each}}
+
+  </tbody>
+  </table>
