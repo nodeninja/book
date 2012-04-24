@@ -31,6 +31,17 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 
+app.post('/verify', function(req, res) {
+   var username = req.body.username;
+   var taken = 'N';
+   if ('don' == username) taken = 'Y'
+
+   res.writeHead(200, {'Content-Type': 'text/plain'});
+   res.end(taken);
+
+   
+});
+
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
