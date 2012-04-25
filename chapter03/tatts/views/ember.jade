@@ -26,6 +26,7 @@ script(type='text/x-handlebars', data-template-name='raceInfo')
   </thead>
   <tbody>
   {{#each RaceApp.raceController.content}}
+  {{#if visible}}
   <tr>
   <td><span class="label">{{date}}</span></td>
   <td><span class="label">{{time}}</span></td>
@@ -35,6 +36,7 @@ script(type='text/x-handlebars', data-template-name='raceInfo')
   <td><span class="badge badge-success">{{places}}</span></td>
   <td><input class="toggleItem" type="checkbox" {{action "hideRow"}}></input></td>
   </tr>
+  {{/if}}
   {{/each}}
 
   </tbody>
