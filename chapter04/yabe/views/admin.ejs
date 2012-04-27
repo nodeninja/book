@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+        <title>Administration</title>    	
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <link href="/stylesheets/style.css" media="screen" type="text/css" rel="stylesheet">
+        <link href="/static/images/favicon.png" type="image/png" rel="shortcut icon">
+       	<script type="text/javascript" src="/classpath/jquery.js" id="jquery"></script>
+    	<script type="text/javascript" src="/classpath/json.js" id="json"></script>
+        <script src="/static/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js"></script>
+        <script type="text/javascript" src="/static/javascripts/tagselector.js"></script>
+        <style type="text/css">
+            #logo a {
+                color:#fff;
+            }
+        </style>
+    
+	
+</head>
+<body id="admin">
+        <div id="header">
+            <div id="logo">
+                <a href="/index">yabe.</a> <span>administration</span>
+            </div>
+            <ul id="tools">
+                <li>
+                    <a href="/logout">Log out</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="main">
+            <ul class="adminMenu"><li> <span>My posts</span></li></ul>
+            <div>
+		<div id="lift__noticesContainer__"></div>
+		<h3>Welcome  <%= everyauth.user.username %>, <span>you have written <%= everyauth.user.posts.length %> posts so far</span></h3> 
+ <% for (var i=0; i<everyauth.user.posts.length; i++) {
+var post = everyauth.user.posts[i];
+if (i % 2 == 1) {
+%>
+ 		<p class="post odd"> 
+<%}
+else {
+
+%>
+    	<p class="post even"> 
+<%
+}
+%>
+			<a href="/admin/posts/edit/<%= post['_id'] %>"><%= post.title %></a> </p>
+
+<%
+}
+%>
+		<p id="newPost"> 
+		    <a href="/admin/posts/add"><span>+</span> write a new post</a> 
+		</p> 
+		
+
+</div>         
+        </div>
+        
+        <p id="footer">
+            Yabe is a (not so) powerful blog engine built with the 
+            <a href="http://liftweb.net/">liftweb framework</a>
+            as a tutorial application.
+        </p>
+        
+    
+
+<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
+
+	
+<script type="text/javascript">
+// <![CDATA[
+
+var lift_page = "F154557645921GFAYFA";
+// ]]>
+</script></body>
+</html>  
+  

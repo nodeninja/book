@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head> 
+        <title>Login</title>    	
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type"> 
+        <link href="/stylesheets/login.css" media="screen" type="text/css" rel="stylesheet">
+	    <meta content="" name="description">
+	    <meta content="" name="keywords">
+	    <title>App:  Login</title>
+	    <script type="text/javascript" src="/classpath/jquery.js" id="jquery"></script>
+	    <script type="text/javascript" src="/classpath/json.js" id="json"></script>
+	    <style type="text/css">
+	    	body{background: #F0F0F0;
+    font-family: 'Lucida grande', verdana, sans-serif;}
+	    </style>
+    
+	
+</head>
+<body> 
+    
+
+        <div id="login"> 
+<% if (locals.errors) { %>
+<div class="error">Authentication error. Please try again</div>
+<% } %>			
+		<h1></h1> 
+		<form action="/login" accept-charset="utf-8" method="POST">
+	 	<div id="lift__noticesContainer__"></div>
+		<p id="username-field"> 
+		<label for="username">Your username:</label> 
+		<input name="login" type="text" id="F154557645739DOHBXG"><script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(function() {if (document.getElementById("F154557645739DOHBXG")) {document.getElementById("F154557645739DOHBXG").focus();};});
+// ]]>
+</script>
+		</p> 
+		<p id="password-field"> 
+		<label for="password">Your password:</label> 
+		<input type="password" name="password">
+		</p> 
+		<p id="signin-field"> 
+		<input value="Log In" type="submit">
+		</p> 
+		
+		</form>
+	  
+		</div> 
+     
+ 
+<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
+
+	
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(function() {liftAjax.lift_successRegisterGC();});
+var lift_page = "F154557645738ZHHB4V";
+// ]]>
+</script></body>
+</html>  
+  
