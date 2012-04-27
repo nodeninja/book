@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+        <title>Administration</title>    	
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <link href="/static/stylesheets/style.css" media="screen" type="text/css" rel="stylesheet">
+        <link href="/static/stylesheets/crudify.css" media="screen" type="text/css" rel="stylesheet">
+        <link href="/static/images/favicon.png" type="image/png" rel="shortcut icon">
+       	<script type="text/javascript" src="/classpath/jquery.js" id="jquery"></script>
+    	<script type="text/javascript" src="/classpath/json.js" id="json"></script>
+        <script src="/static/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js"></script>
+        <script type="text/javascript" src="/static/javascripts/tagselector.js"></script>
+        <style type="text/css">
+            #logo a {
+                color:#fff;
+            }
+        </style>
+    
+	
+</head>
+<body id="admin">
+        <div id="header">
+            <div id="logo">
+                <a href="/index">yabe.</a> <span>administration</span>
+            </div>
+            <ul id="tools">
+                <li>
+                    <a href="/logout">Log out</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="main">
+            <ul class="adminMenu"><li> <a href="/admin/posts/">My posts</a></li><li> <a href="/admin/all_posts/">Posts</a></li><li> <span>Tags</span></li><li> <a href="/admin/comments/">Comments</a></li><li> <a href="/admin/users/">Users</a></li></ul>
+            <div>
+    <div id="crud">
+        <div id="crudContent">
+            <div class="Tags" id="crudBlank">
+
+                <h2 id="crudBlankTitle">Add Tag</h2>
+
+                <div class="objectForm">
+                    <form>
+                        <div id="lift__noticesContainer__"></div>
+                        <div class="crudField crud_text">
+                            <label for="object_name">
+                                Common name
+                            </label>
+                            <input name="F154557648782NF3VEP" size="50" value="" type="text" class="" id="object_name">
+
+                             <span class="crudHelp">
+                                Required.
+                             </span>
+                        </div>
+
+                        <p class="crudButtons">
+                            <input name="F1545577487832OSMGE" value="Save" type="submit">
+                        </p>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>         
+        </div>
+        
+        <p id="footer">
+            Yabe is a (not so) powerful blog engine built with the 
+            <a href="http://liftweb.net/">liftweb framework</a>
+            as a tutorial application.
+        </p>
+        
+    
+
+<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
+
+	
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(function() {liftAjax.lift_successRegisterGC();});
+var lift_page = "F154557648781URYHUF";
+// ]]>
+</script></body>
+</html>  
+  

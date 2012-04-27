@@ -9,7 +9,7 @@ var Schema = new db.Schema({
     title    : String
     , text    : String
     , author     : String
-    , tags: String
+    , tags: [String]
 });
 
 // Exports

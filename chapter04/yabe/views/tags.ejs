@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+    <title>Administration</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link href="/stylesheets/style.css" media="screen" type="text/css" rel="stylesheet">
+    <link href="/stylesheets/crudify.css" media="screen" type="text/css" rel="stylesheet">
+    <link href="/static/images/favicon.png" type="image/png" rel="shortcut icon">
+    <script type="text/javascript" src="/classpath/jquery.js" id="jquery"></script>
+    <script type="text/javascript" src="/classpath/json.js" id="json"></script>
+    <script src="/static/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js"></script>
+    <script type="text/javascript" src="/static/javascripts/tagselector.js"></script>
+    <style type="text/css">
+        #logo a {
+            color: #fff;
+        }
+    </style>
+
+
+</head>
+<body id="admin">
+<div id="header">
+    <div id="logo">
+        <a href="/index">yabe.</a> <span>administration</span>
+    </div>
+    <ul id="tools">
+        <li>
+            <a href="/logout">Log out</a>
+        </li>
+    </ul>
+</div>
+
+<div id="main">
+    <ul class="adminMenu">
+        <li><a href="/admin/posts/">My posts</a></li>
+        <li><a href="/admin/all_posts/">Posts</a></li>
+        <li><span>Tags</span></li>
+        <li><a href="/admin/comments/">Comments</a></li>
+        <li><a href="/admin/users/">Users</a></li>
+    </ul>
+    <div>
+        <div id="crud">
+            <div id="crudContent">
+                <div class="Tags" id="crudList">
+
+                    <h2 id="crudListTitle">Tags</h2>
+
+                    <div style="background-color:#314660; border:0px;" id="crudListSearch">
+                        <form action="/admin/tags/" method="post">
+                            <input name="F154557648633USSNQY" type="text" value="">
+                            <input value="Search" type="submit">
+                        </form>
+                    </div>
+
+                    <div id="crudListTable">
+
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>
+                                    <a class="crudSortedAsc"
+                                       href="/admin/tags/index?order=DESC&F1545576486343KFOIS=_"><span>Tags</span></a>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% for (var i=0; i
+                            <tags.length
+                            ; i++) {
+                            var tag = tags[i];
+                            if (i % 2 == 1) {
+                            %>
+                            <tr class="odd">
+                                <%}
+                                else {
+
+                                %>
+                            <tr class="even">
+                                <%
+                                }
+                                %>
+                                <td>
+                                    <a href="/admin/tags/edit/<%= tag._id %>"><%= tag.tagName %></a>
+                                </td>
+
+                                <%
+                                }
+                                %>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="background-color:#314660; border:0px;" id="crudListPagination">
+
+                        <p class="crudCount">
+                            <%= tags.length %> Tags
+                        </p>
+
+                    </div>
+
+                    <p id="crudListAdd">
+                        <a href="/admin/tags/add">Add Tag</a>
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<p id="footer">
+    Yabe is a (not so) powerful blog engine built with the
+    <a href="http://liftweb.net/">liftweb framework</a>
+    as a tutorial application.
+</p>
+
+
+<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
+
+
+<script type="text/javascript">
+    // <![CDATA[
+    jQuery(document).ready(function () {
+        liftAjax.lift_successRegisterGC();
+    });
+    var lift_page = "F154557648632YSHDL3";
+    // ]]>
+</script>
+</body>
+</html>  
+  

@@ -1,8 +1,13 @@
 <%- partial('header-admin.ejs', {}) %>
         
         <div id="main">
-            <ul class="adminMenu"><li> <span>My posts</span></li></ul>
+            <ul class="adminMenu"><li> <span>My posts</span></li><%- partial('admin-menu.ejs', {}) %></ul>
             <div>
+<% if (locals.errors) { %>
+<% for (var i=0; i<errors.length; i++) { %>
+<div class="error"><strong><%= errors[i] %></strong></div>
+<% } %>
+<%}%>
 	<form method="post" action="/admin/posts/add"><from>
 		<p>
 		</p><div id="lift__noticesContainer__"></div>
@@ -21,7 +26,7 @@
 
     	<p> 
         <label>Enter some tags:</label>
-        <input name="tags" size="50" type="text" <% if (locals.post) { %> value="<%= post.tags %>"<% } %>> 
+        <input name="tags" size="50" type="text" <% if (locals.post && locals.post.tags) { %> value="<%= post.tags %>"<% } %>> 
         </p> 
     
     	<p> 

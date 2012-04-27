@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+        <title>Administration</title>		
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <link href="/stylesheets/style.css" media="screen" type="text/css" rel="stylesheet">
+        <link href="/stylesheets/crudify.css" media="screen" type="text/css" rel="stylesheet">
+        <link href="/static/images/favicon.png" type="image/png" rel="shortcut icon">
+       	<script type="text/javascript" src="/classpath/jquery.js" id="jquery"></script>
+    	<script type="text/javascript" src="/classpath/json.js" id="json"></script>
+        <script src="/static/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js"></script>
+        <script type="text/javascript" src="/static/javascripts/tagselector.js"></script>
+        <style type="text/css">
+            #logo a {
+                color:#fff;
+            }
+        </style>
+    
+	
+</head>
+<body id="admin">
+        <div id="header">
+            <div id="logo">
+                <a href="/index">yabe.</a> <span>administration</span>
+            </div>
+            <ul id="tools">
+                <li>
+                    <a href="/logout">Log out</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="main">
+<%- partial('admin-menu.ejs', {current: 'Users'}) %>
+            <div id="crud">
+	<div id="crudContent"> 
+		<div class="Users" id="crudList">
+			<h2 id="crudListTitle">Users</h2> 
+			<div style="background-color:#314660; border:0px;" id="crudListSearch"> 
+		    	<form action="/admin/users/" method="post">        
+		    		<input name="F154557648646KWN0BB" type="text" value=""> 
+		    		<input value="Search" type="submit"> 
+		    	</form>       
+     		</div> 
+			<div id="crudListTable">  
+				<table> 
+					<thead> 
+						<tr> 
+							<th><a class="crudSortedAsc" href="/admin/users/index?order=DESC&F154557648647N0MG0O=_"><span>Users</span></a> </th> 
+						</tr> 
+					</thead>
+					<tbody id="users">
+					<tr class="odd">
+					  	<td>
+						   <a href="/admin/users/edit/2">normal&#64;demo.com</a>
+						</td> 
+				  	</tr> 
+					</tbody><tbody>
+					<tr class="even">
+					  	<td>
+						   <a href="/admin/users/edit/1">super&#64;demo.com</a>
+						</td> 
+				  	</tr> 
+					</tbody><tbody>
+					<tr class="odd">
+					  	<td>
+						   <a href="/admin/users/edit/36">test1&#64;test.com</a>
+						</td> 
+				  	</tr> 
+					</tbody><tbody>
+					<tr class="even">
+					  	<td>
+						   <a href="/admin/users/edit/35">test&#64;test.com</a>
+						</td> 
+				  	</tr> 
+					</tbody><tbody>
+					<tr class="odd">
+					  	<td>
+						   <a href="/admin/users/edit/3">zuppa&#64;gmx.net</a>
+						</td> 
+				  	</tr> 
+					</tbody>
+				</table>
+			</div> 
+    		<div style="background-color:#314660; border:0px;" id="crudListPagination"> 
+				<p class="crudCount"> 
+					5 Users
+				</p> 
+ 			</div> 
+ 
+			<p id="crudListAdd"> 
+				<a href="/admin/users/add">Add User</a> 
+			</p> 
+		</div>
+	</div>  
+</div>         
+        </div>
+        
+        <p id="footer">
+            Yabe is a (not so) powerful blog engine built with the 
+            <a href="http://liftweb.net/">liftweb framework</a>
+            as a tutorial application.
+        </p>
+        
+    
+
+<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
+
+	
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(function() {liftAjax.lift_successRegisterGC();});
+var lift_page = "F154557648645GMG33D";
+// ]]>
+</script></body>
+</html>  
+  

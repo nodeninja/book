@@ -5,6 +5,7 @@
  */
 
 var Post = require('../models/Post');
+var tag = require('./tag');
 
 exports.addPost = addPost;
 exports.getPostByAuthor = getPostByAuthor;
@@ -17,7 +18,7 @@ function addPost(post, callback) {
     instance.title = post.title;
     instance.text = post.text;
     instance.author = post.author;
-    instance.tags = post.tags.split(" ");
+    instance.tags = tag.parseTags(post.tags);
 
 console.log(instance);
     instance.save(function (err) {
@@ -25,7 +26,13 @@ console.log(instance);
             callback(err);
         }
         else {
-            callback(null, instance);
+            tag.addTags(instance.tags, function(err) {
+                if (err) {
+                    callback(err);
+                }
+                else callback(null, instance);
+            });
+            
         }
 
     });
@@ -69,9 +76,15 @@ function updatePost(post, callback) {
             if (null === myPost) callback(null);
             myPost.title = post.title;
             myPost.text = post.text;
-            myPost.tags = post.tags.split(" "); 
+            myPost.tags = tag.parseTags(post.tags);
             myPost.save(function(err) {
-                callback(err, myPost);
+                tag.addTags(myPost.tags, function(err) {
+                    if (err) {
+                        callback(err);
+                    }
+                    else callback(err, myPost);
+                });
+                
             });
         }
  

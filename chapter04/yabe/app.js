@@ -110,9 +110,16 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+app.get('/admin/all_posts', routes.allPosts);
+app.get('/admin/comments', routes.comments);
+app.get('/admin/posts', routes.admin);
 app.get('/admin/posts/add', routes.newPost);
 app.get('/admin/posts/edit/:postId', routes.editPost);
 app.get('/admin/posts/index', routes.admin);
+app.get('/admin/tags', routes.tags);
+app.get('/admin/tags/add', routes.tagsAdd);
+app.get('/admin/users', routes.users);
+app.get('/index', routes.index);
 app.get('/login', routes.login);
 app.get('/post/create', routes.create);
 app.get('/read', routes.read);
