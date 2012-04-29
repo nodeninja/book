@@ -1,7 +1,7 @@
 <%- partial('header-admin.ejs', {}) %>
         
         <div id="main">
-            <ul class="adminMenu"><li> <span>My posts</span></li><%- partial('admin-menu.ejs', {}) %></ul>
+            <ul class="adminMenu"><%- partial('admin-menu.ejs', {current: "My posts"}) %></ul>
             <div>
 <% if (locals.errors) { %>
 <% for (var i=0; i<errors.length; i++) { %>

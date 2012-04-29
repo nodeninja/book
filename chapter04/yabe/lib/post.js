@@ -7,10 +7,31 @@
 var Post = require('../models/Post');
 var tag = require('./tag');
 
+exports.addComment = addComment;
 exports.addPost = addPost;
+exports.getNextPost = getNextPost;
 exports.getPostByAuthor = getPostByAuthor;
 exports.getPostById = getPostById;
+exports.getPosts = getPosts;
+exports.getPreviousPost = getPreviousPost;
 exports.updatePost = updatePost;
+
+
+
+function addComment(id, comment, callback) {
+    Post.update({_id: id}, {$push: {comments: comment}}, callback);
+    /**
+    Post.findById(id, function(err, post) {
+        
+       post.comments.push(comment);
+        post.save(function(err) {
+            console.log(post);
+            callback(err);
+        });
+    });*/
+    
+   
+}
 
 function addPost(post, callback) {
 
@@ -20,7 +41,7 @@ function addPost(post, callback) {
     instance.author = post.author;
     instance.tags = tag.parseTags(post.tags);
 
-console.log(instance);
+
     instance.save(function (err) {
         if (err) {
             callback(err);
@@ -37,6 +58,10 @@ console.log(instance);
 
     });
 
+}
+
+function getNextPost(id, callback) {
+    Post.find().where('_id').gt(id).asc('_id').limit(1).run(callback);
 }
 
 // Retrieve post, return null if non-existent
@@ -63,6 +88,14 @@ function getPostById(id, callback) {
             else callback(null, doc);
         }
     });
+}
+
+function getPosts(callback) {
+    Post.find().desc('_id').run(callback);
+}
+
+function getPreviousPost(id, callback) {
+    Post.find().where('_id').$lt(id).desc('_id').limit(1).run(callback);
 }
 
 function updatePost(post, callback) {

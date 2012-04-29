@@ -1,52 +1,159 @@
-<div class="post">
-    <h2 class="post-title">
-        <a class="post-title-link" href="/read/181">Fun</a>
-    </h2>
+<%- partial('header.ejs', {}) %>
 
-    <div class="post-metadata">
-        <span class="post-author">by Normal Demo</span>,
+	<div id="main">
+	
+
+    <ul id="pagination">
+    <% if (locals.previous) { %>
+		<li id="previous">
+			<a href="/read/<%= previous._id %>"><%= previous.title %></a>
+		</li>
+		<% } %>
+		<% if (locals.next) { %>
+        <li id="next"> 
+            <a href="/read/<%= next._id %>"><%= next.title %></a>
+        </li>
+        	<% } %>
+	</ul>
+
+	<div class="post">
+		<h2 class="post-title">
+			<a class="post-title-link" href="/read/<%= post.title %>">my</a>
+		</h2>
+		<div class="post-metadata">
+			<span class="post-author">by <%= post.author %></span>,
             <span class="post-date">
-    			2012-04-28
+                <%= post.date %>
             </span>
-        <span class="post-comments"> | 0 comments </span>
-    </div>
-    <div class="post-content">
-        <div class="about">Detail:</div>
-			<span id="post-content-span"> <p>This is fun</p>
- </span>
-    </div>
+            <% if (locals.post.tags) { %>
+            <span class="post-tags"> - tagged: 
+            <% for (var i=0; i<post.tags.length; i++) { 
+            	var tag = post.tags[i];
+            %>
+           
+            <a href='/posts/<%= tag %>'><%= tag %></a>  <a href='/posts/don'>don</a>
+            <% } %>	
+            </span>
+            <% } %>
+		</div>
+		<div class="post-content">
+			<div class="about">Detail:</div>
+			<span class="post-content-span">
+                <p><%= post.text %></p>
+
+			</span>
+		</div>
+	</div>
+
+	<div id="F154557649496JCNQJJ_outer" style="display: inline"><div style="display: inline" id="F154557649496JCNQJJ"><div class="comments">
+		<h3 class="comment-count"><%= post.comments.length %> comments</h3>
+
+        <% for (var i=0; i<post.comments.length; i++) { 
+            var comment = post.comments[i];
+        %>
+		<div class="comment">
+			<div class="comment-metadata">
+				<span class="comment-author"><%= comment.author %> </span> <span class="comment-date"><%= comment._id.getTimestamp().toDateString() %> </span>
+			</div>
+			<div class="comment-content">
+				<div class="about">Detail:</div>
+				<%= comment.content %> 
+			</div>
+		</div>
+        <% } %>
+        
+	</div><script type="text/javascript">
+// <![CDATA[
+/* JSON Func comet $$ F154557649499NKXQ4Y */function F154557649499NKXQ4Y(obj) {liftAjax.lift_ajaxHandler('F154557649499NKXQ4Y='+ encodeURIComponent(JSON.stringify(obj)), null,null);}
+// ]]>
+</script></div><script type="text/javascript">
+// <![CDATA[
+var destroy_F154557649496JCNQJJ = function() {}
+// ]]>
+</script></div>
+	
+
+	<h3>Post a comment</h3>
+
+	<form id="F154557650490EW20PS" action="/comment" method="POST">
+		<div>
+            <% 
+            if (locals.errors && locals.errors[0] != undefined) {
+                for (var i=0; i<locals.errors.length; i++) {
+                var error = locals.errors[i];
+                %>
+			<span class="error" id="error"><%= error %></span><br /><br />
+            <% }} %>
+			<p>
+				<label for="author">Your name: </label> <input id="author" name="name" type="text" value="<% if (locals.name && locals.name != undefined) { %><%= locals.name %> <%}%>">
+			</p>
+			<p>
+				<label for="content">Your message: </label>
+				<textarea name="message" id="content"><% if (locals.message && undefined != locals.message) {%><%= locals.message %><%}%></textarea><input name="postId" type="hidden" value="<%= post._id %>">
+			</p>
+
+			<p>
+				<input value="Submit your comment" type="submit">
+			</p>
+		</div>
+	</form>
+	
+	<script charset="utf-8" type="text/javascript"> 
+	    $(function() {         
+	        // Expose the form 
+	        $('form').click(function() { 
+	            $('form').expose({api: true}).load(); 
+	        }); 
+	        
+	        $("#error").hide();
+	    });
+	    
+	    function clearError() {
+	    	$("#error").html("");
+	    	$("#error").hide();
+	    }
+	    
+	    function showError(msg) {
+	    	$("#error").html(msg);
+	    	$("#error").show();
+	    }
+	    
+	    //use a param to update captcha
+	    var update=0;
+	    
+	    function clearForm() {
+	    	$("#author").val("");
+	    	$("#content").val("");
+	    	$("#code").val("");
+	    	$("#captcha").attr("src","/captcha?update="+update);
+	    	update++;
+	    }
+	</script>
 </div>
 
+    <p id="footer">
+        Powered by yabe-lift <br>
+        Yabe is a (not so) powerful blog engine built with the 
+        <a href="http://liftweb.net/">liftweb framework</a>
+        as a tutorial application.
+    </p>
 
-<div class="older-posts">
-    <h3>
-        Older posts <span class="from">from this blog</span>
-    </h3>
 
-    <div class="post teaser">
-        <h2 class="post-title">
-            <a href="/read/180" class="post-title-link">Don </a>
-        </h2>
 
-        <div class="post-metadata">
-            <span class="post-author">by Normal Demo</span>,
-                <span class="post-date">
-                    2012-04-27
-                </span>
-            <span class="post-comments"> | 0 comments </span>
-        </div>
-    </div>
-    <div class="post teaser">
-        <h2 class="post-title">
-            <a href="/read/179" class="post-title-link">normal</a>
-        </h2>
+<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
+<script type="text/javascript" src="/comet_request/1cuqrrou15tks1ka97dtvhv6yw/cometAjax.js"></script>
 
-        <div class="post-metadata">
-            <span class="post-author">by Normal Demo</span>,
-                <span class="post-date">
-                    2012-04-27
-                </span>
-            <span class="post-comments"> | 0 comments </span>
-        </div>
-    </div>
-</div>
+	
+<script type="text/javascript">
+// <![CDATA[
+var lift_toWatch = {"F154557649496JCNQJJ": 154557650480};
+// ]]>
+</script>
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(function() {liftAjax.lift_successRegisterGC();});
+var lift_page = "F1545576504892GCPDZ";
+// ]]>
+</script></body>
+</html>  
+  

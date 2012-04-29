@@ -10,9 +10,6 @@ var tag = require("../lib/tag");
 var assert = require("assert");
 var should = require('should');
 
-var db = require('../lib/db');
-db.setLocal(true);
-
 suite('tag', function() {
 
     test('parseTag should parse tags', function(done) {

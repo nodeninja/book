@@ -8,7 +8,6 @@ var db = require('../lib/db');
 var Schema = new db.Schema({
     author    : String
     , content    : String
-    , post: String
 });
 
 // Exports

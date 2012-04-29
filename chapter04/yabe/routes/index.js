@@ -1,5 +1,7 @@
 'use strict';
 
+var Comment = require('../models/Comment');
+var lib = require("../lib/yabelib");
 var post = require("../lib/post");
 var tag = require("../lib/tag");
 var _ = require("underscore");
@@ -7,7 +9,6 @@ var _ = require("underscore");
 /*
  * GET home page.
  */
-
 
 exports.admin = function(req, res){
     if (undefined === req.user) {
@@ -48,7 +49,14 @@ exports.editPost = function(req, res){
 
 
 exports.index = function(req, res){
-  res.render('index', { title: 'YABE' })
+    post.getPosts(function(err, posts) {
+    	if (err) handleError(err, req, res);
+    	_.forEach(posts, function(post) {
+    		post.date = lib.getTimestamp(post._id).toDateString();
+    	});
+    	res.render('index', { title: 'YABE', posts: posts});
+    });
+  
 };
 
 exports.login = function(req, res){
@@ -60,15 +68,64 @@ exports.newPost = function(req, res){
         res.redirect('/');
     }
     else    
-        res.render('newPost', { title: 'YABE' })   
+        res.render('newPost', { title: 'YABE' });  
  
 };
 
-exports.read = function(req, res){
-  res.render('post', { title: 'YABE' })
+exports.read = read;
+
+function read(req, res, errors, name, message){
+	var id = req.params.id;
+	post.getPostById(id, function(err, myPost) {
+		if (err) handleError(err, req, res);
+		post.getNextPost(id, function(err, myNext) {
+			var next;
+			if (myNext.length > 0) next = myNext[0];
+			if (err) handleError(err, req, res);
+			console.log(err);
+			console.log(next);
+			post.getPreviousPost(id, function(err, myPrevious) {
+				var previous;
+				console.log('prev');
+				console.log(myPrevious);
+				if (myPrevious.length > 0) previous = myPrevious[0];
+				if (err) handleError(err, req, res);
+				res.render('read', { title: 'YABE', next: next, post: attachDate(myPost), previous: previous, errors: errors, name: name, message: message});
+			});
+			
+		});
+		
+	});
+  
+}
+
+exports.postComment = function(req, res){
+	var postId = req.body.postId;
+    var name = req.body.name;
+    var message = req.body.message;
+
+    var errors = [];
+    if (undefined === name || name.length === 0) errors.push("Please input name");
+    if (undefined === message || message.length === 0) errors.push("Please input message");
+
+
+    if (errors.length > 0) {
+        req.params.id = postId;
+        read(req, res, errors, name, message);
+        return;
+    }
+    
+    var comment = new Comment();
+    comment.author = name;
+    comment.content = message;
+
+    post.addComment(postId, {author: name, content: message}, function(err, numAffected) {
+        res.redirect('/read/' + postId);
+    });
+
 };
 
-// Posts
+// Post post submission
 exports.postNewPost = function(req, res){
     var postId = req.body.postId;
     var title = req.body.title;
@@ -77,7 +134,6 @@ exports.postNewPost = function(req, res){
 
 
     var errors = [];
-    console.log(postId);
     if (undefined === title || title.length === 0) errors.push("Please input title");
     if (undefined === text || text.length === 0) errors.push("Please input content");
 
@@ -86,12 +142,12 @@ exports.postNewPost = function(req, res){
         res.render('newPost', { title: 'YABE', errors: errors, post:{title: title, text: text}});
     }
     else if (undefined != postId) {
-        post.updatePost({_id: postId, title: title, text: text, author: req.user['_id'], tags: tags}, function(err, post) {
+        post.updatePost({_id: postId, title: title, text: text, author: req.user['username'], tags: tags}, function(err, post) {
             res.redirect('/admin/posts/index');
         });        
     }
     else {
-        post.addPost({title: title, text: text, author: req.user['_id'], tags: tags}, function(err, post) {
+        post.addPost({title: title, text: text, author: req.user['username'], tags: tags}, function(err, post) {
             res.redirect('/admin/posts/index');
         });
     }
@@ -134,3 +190,11 @@ exports.users = function(req, res){
         res.render('users', { title: 'YABE'}) ;
 	}
 };
+
+function attachDate(mongoObject) {
+	mongoObject.date = lib.getTimestamp(mongoObject._id).toDateString();
+	return mongoObject;
+}
+function handleError(err, req, res) {
+	res.render('error', {title: 'YABE', error: err})
+}

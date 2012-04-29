@@ -15,7 +15,7 @@ everyauth.everymodule.findUserById(function (userId, callback) {
     console.log('finding user: ' + userId);
     user.getUserById(userId, function(err, myUser) {
         // Find posts and bolt on to the user object.  Is there a better way?
-        post.getPostByAuthor(myUser['_id'], function(err, posts) {
+        post.getPostByAuthor(myUser.username, function(err, posts) {
           myUser.posts = posts;
           callback(err, myUser);      
         });
@@ -122,9 +122,10 @@ app.get('/admin/users', routes.users);
 app.get('/index', routes.index);
 app.get('/login', routes.login);
 app.get('/post/create', routes.create);
-app.get('/read', routes.read);
+app.get('/read/:id', routes.read);
 
 app.post('/admin/posts/add', routes.postNewPost);
+app.post('/comment', routes.postComment);
 
 var port = process.env.PORT || 3000;
 app.listen(port);

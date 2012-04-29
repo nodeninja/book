@@ -1,56 +1,63 @@
 <%- partial('header.ejs', {}) %>
 <div id="content">
-<div class="post">
-    <h2 class="post-title">
-        <a class="post-title-link" href="/read/181">Fun</a>
-    </h2>
+    <div class="post">
 
-    <div class="post-metadata">
-        <span class="post-author">by Normal Demo</span>,
+        <%
+        if (posts.length > 0) {
+        var post = posts[0]
+        %>
+        <h2 class="post-title">
+            <a class="post-title-link" href="/read/<%= post._id %>"><%= post.title %></a>
+        </h2>
+
+        <div class="post-metadata">
+            <span class="post-author">by <%= post.author %></span>,
             <span class="post-date">
-        		2012-04-28
+        		<%= post.date %>
             </span>
-        <span class="post-comments"> | 0 comments </span>
-    </div>
-    <div class="post-content">
-        <div class="about">Detail:</div>
-			<span id="post-content-span"> <p>This is fun</p>
+            <span class="post-comments"> | 0 comments </span>
+        </div>
+        <div class="post-content">
+            <div class="about">Detail:</div>
+			<span id="post-content-span"> <p><%= post.text %></p>
+		<%}%>
+
+        
+
  </span>
-    </div>
-</div>
-
-
-<div class="older-posts">
-    <h3>
-        Older posts <span class="from">from this blog</span>
-    </h3>
-
-    <div class="post teaser">
-        <h2 class="post-title">
-            <a href="/read/180" class="post-title-link">Don </a>
-        </h2>
-
-        <div class="post-metadata">
-            <span class="post-author">by Normal Demo</span>,
-                <span class="post-date">
-                    2012-04-27
-                </span>
-            <span class="post-comments"> | 0 comments </span>
         </div>
     </div>
-    <div class="post teaser">
-        <h2 class="post-title">
-            <a href="/read/179" class="post-title-link">normal</a>
-        </h2>
 
-        <div class="post-metadata">
-            <span class="post-author">by Normal Demo</span>,
+
+    <div class="older-posts">
+        <h3>
+            Older posts <span class="from">from this blog</span>
+        </h3>
+    <%
+    for (var i=1; i
+    <posts.length
+    ; i++) {
+    var post = posts[i];
+    %>
+    
+        <div class="post teaser">
+            <h2 class="post-title">
+                <a href="/read/<%= post._id %>" class="post-title-link"><%= post.title %> </a>
+            </h2>
+
+            <div class="post-metadata">
+                <span class="post-author">by <%= post.author %></span>,
                 <span class="post-date">
-                    2012-04-27
+                    <%= post.date %>
                 </span>
-            <span class="post-comments"> | 0 comments </span>
-        </div>
+                <span class="post-comments"> | <%= post.author %> comments </span>
+            </div>
+        </div>    
+    <%
+    }
+    %>
+
+
     </div>
-</div>
 </div>
 <%- partial('footer.ejs', {}) %>
