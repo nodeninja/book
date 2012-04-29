@@ -14,7 +14,8 @@ function setIO(io) {
             console.log(data);
             post.addComment(data.id, data.comment, function() {
             // Broadcast after added to database
-            socket.emit('commentFromServer', {comment: data.comment});
+            socket.broadcast.emit('commentFromServer', {id: data.id, comment: data.comment});
+            socket.emit('commentFromServer', {id: data.id, comment: data.comment});
         });             
            
         });

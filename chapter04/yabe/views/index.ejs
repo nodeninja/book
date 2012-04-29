@@ -16,7 +16,7 @@
             <span class="post-date">
         		<%= post.date %>
             </span>
-            <span class="post-comments"> | 0 comments </span>
+            <span class="post-comments"> | <%= post.comments.length %> comments </span>
         </div>
         <div class="post-content">
             <div class="about">Detail:</div>
@@ -51,7 +51,7 @@
                 <span class="post-date">
                     <%= post.date %>
                 </span>
-                <span class="post-comments"> | <%= post.author %> comments </span>
+                <span class="post-comments"> | <%= post.comments.length %> comments </span>
             </div>
         </div>    
     <%
