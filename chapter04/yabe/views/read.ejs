@@ -1,5 +1,6 @@
 <%- partial('header.ejs', {}) %>
-
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/comment.js" type="text/javascript"></script>
 	<div id="main">
 	
 
@@ -31,7 +32,7 @@
             	var tag = post.tags[i];
             %>
            
-            <a href='/posts/<%= tag %>'><%= tag %></a>  <a href='/posts/don'>don</a>
+            <a href='/posts/<%= tag %>'><%= tag %></a>  <a href='#'>don</a>
             <% } %>	
             </span>
             <% } %>
@@ -62,15 +63,7 @@
 		</div>
         <% } %>
         
-	</div><script type="text/javascript">
-// <![CDATA[
-/* JSON Func comet $$ F154557649499NKXQ4Y */function F154557649499NKXQ4Y(obj) {liftAjax.lift_ajaxHandler('F154557649499NKXQ4Y='+ encodeURIComponent(JSON.stringify(obj)), null,null);}
-// ]]>
-</script></div><script type="text/javascript">
-// <![CDATA[
-var destroy_F154557649496JCNQJJ = function() {}
-// ]]>
-</script></div>
+	</div></div></div>
 	
 
 	<h3>Post a comment</h3>
@@ -84,51 +77,22 @@ var destroy_F154557649496JCNQJJ = function() {}
                 %>
 			<span class="error" id="error"><%= error %></span><br /><br />
             <% }} %>
+            <span class="error name-error">Please input your name</span><br class='error name-error' /><br class='error name-error' />
+            <span class="error message-error">Please input your message</span><br class='error message-error' /><br class='error message-error' />
 			<p>
 				<label for="author">Your name: </label> <input id="author" name="name" type="text" value="<% if (locals.name && locals.name != undefined) { %><%= locals.name %> <%}%>">
 			</p>
 			<p>
 				<label for="content">Your message: </label>
-				<textarea name="message" id="content"><% if (locals.message && undefined != locals.message) {%><%= locals.message %><%}%></textarea><input name="postId" type="hidden" value="<%= post._id %>">
+				<textarea name="message" id="content"><% if (locals.message && undefined != locals.message) {%><%= locals.message %><%}%></textarea><input id="postId" name="postId" type="hidden" value="<%= post._id %>">
 			</p>
 
 			<p>
-				<input value="Submit your comment" type="submit">
+				<input value="Submit your comment" class="btn-comment" type="button">
 			</p>
 		</div>
 	</form>
-	
-	<script charset="utf-8" type="text/javascript"> 
-	    $(function() {         
-	        // Expose the form 
-	        $('form').click(function() { 
-	            $('form').expose({api: true}).load(); 
-	        }); 
-	        
-	        $("#error").hide();
-	    });
-	    
-	    function clearError() {
-	    	$("#error").html("");
-	    	$("#error").hide();
-	    }
-	    
-	    function showError(msg) {
-	    	$("#error").html(msg);
-	    	$("#error").show();
-	    }
-	    
-	    //use a param to update captcha
-	    var update=0;
-	    
-	    function clearForm() {
-	    	$("#author").val("");
-	    	$("#content").val("");
-	    	$("#code").val("");
-	    	$("#captcha").attr("src","/captcha?update="+update);
-	    	update++;
-	    }
-	</script>
+
 </div>
 
     <p id="footer">
@@ -140,20 +104,6 @@ var destroy_F154557649496JCNQJJ = function() {}
 
 
 
-<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
-<script type="text/javascript" src="/comet_request/1cuqrrou15tks1ka97dtvhv6yw/cometAjax.js"></script>
-
-	
-<script type="text/javascript">
-// <![CDATA[
-var lift_toWatch = {"F154557649496JCNQJJ": 154557650480};
-// ]]>
-</script>
-<script type="text/javascript">
-// <![CDATA[
-jQuery(document).ready(function() {liftAjax.lift_successRegisterGC();});
-var lift_page = "F1545576504892GCPDZ";
-// ]]>
-</script></body>
+</body>
 </html>  
   

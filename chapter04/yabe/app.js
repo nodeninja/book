@@ -7,6 +7,7 @@ var everyauth = require('everyauth')
   , express = require('express')
   , post = require('./lib/post')
   , routes = require('./routes')
+  , sio = require('./lib/socket')
   , user = require('./lib/user');
 
     
@@ -93,6 +94,17 @@ app.configure(function(){
 
 // View helpers
 everyauth.helpExpress(app, { userAlias: 'myUser' });
+
+// Sockets
+var io = require('socket.io').listen(app);
+var heroku = process.env.PORT;
+if (heroku) {
+    io.configure(function () { 
+        io.set("transports", ["xhr-polling"]); 
+        io.set("polling duration", 10); 
+    });
+}
+sio.setIO(io);
 
 // No layout for now
 app.set('view options', {
