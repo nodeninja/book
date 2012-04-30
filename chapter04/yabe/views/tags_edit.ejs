@@ -1,0 +1,47 @@
+<%- partial('header-admin.ejs', {}) %>
+<div id="main">
+    <%- partial('admin-menu.ejs', {current: 'Tags'}) %>
+    <div id="crud">
+        <div id="crudContent">
+            <div class="Tags" id="crudBlank">
+
+                <h2 id="crudBlankTitle">Edit Tag</h2>
+
+                <form action="/delete-tag" method="POST">
+                    <input type="hidden" name="id" value="<%= tag._id %>">
+                    <input type="hidden" name="tagName" value="<%= tag.tagName %>">
+                    <input value="Delete Tag" type="submit">
+                </form>
+
+                <div class="objectForm">
+                    <form action="/update-tag" method="POST">
+                        <div id="lift__noticesContainer__"></div>
+                        <div class="crudField crud_text">
+                            <label for="object_name">
+                                Common name
+                            </label>
+                            <input type="hidden" name="id" value="<%= tag._id %>">
+                            <input type="hidden" name="tagName" value="<%= tag.tagName %>">
+                            <input class="" id="object_name" size="50" name="newTagName" type="text"
+                                   value="<%= tag.tagName %>">
+
+                             <span class="crudHelp">
+                                Required.
+                             </span>
+                        </div>
+
+                        <p class="crudButtons">
+                            <input name="F154557756851BEIGAZ" value="Save" type="submit">
+                        </p>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<%- partial('footer.ejs', {}) %>
+  
