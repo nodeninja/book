@@ -1,0 +1,13 @@
+        <div class="post teaser">
+            <h2 class="post-title">
+                <a href="/read/<%= post._id %>" class="post-title-link"><%= post.title %> </a>
+            </h2>
+
+            <div class="post-metadata">
+                <span class="post-author">by <%= post.author %></span>,
+                <span class="post-date">
+                    <%= post._id.getTimestamp().toDateString() %>
+                </span>
+                <span class="post-comments"> | <%= post.comments.length %> comments </span>
+            </div>
+        </div>  

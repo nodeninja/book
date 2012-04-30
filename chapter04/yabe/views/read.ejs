@@ -32,7 +32,7 @@
             	var tag = post.tags[i];
             %>
            
-            <a href='/posts/<%= tag %>'><%= tag %></a>  <a href='#'>don</a>
+            <a href='/posts/<%= tag %>'><%= tag %></a>
             <% } %>	
             </span>
             <% } %>
@@ -47,7 +47,7 @@
 	</div>
 
 	<div id="F154557649496JCNQJJ_outer" style="display: inline"><div style="display: inline" id="F154557649496JCNQJJ"><div class="comments">
-		<h3 class="comment-count" id='comment-header'><%= post.comments.length %> comments</h3>
+		<h3 class="comment-count" id='comment-header'><%= post.comments.length %> <% if (1 == post.comments.length) { %>comment<% } { %>comments <%}%></h3>
 
         <% for (var i=post.comments.length - 1; i>=0; i--) { 
             var comment = post.comments[i];

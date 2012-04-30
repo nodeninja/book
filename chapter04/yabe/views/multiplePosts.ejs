@@ -1,0 +1,8 @@
+    <%    for (var i=start; i<posts.length; i++) {
+    var post = posts[i];
+    %>
+    <%- partial('singlePost.ejs', {post: post}) %>
+  
+    <%
+    }
+    %>

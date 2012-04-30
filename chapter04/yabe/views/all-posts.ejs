@@ -1,35 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en" xml:lang="en">
-<head>
-        <title>Administration</title>		
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <link href="/stylesheets/style.css" media="screen" type="text/css" rel="stylesheet">
-        <link href="http://yabe.ayafish.com/static/stylesheets/crudify.css" media="screen" type="text/css" rel="stylesheet">
-        <link href="/static/images/favicon.png" type="image/png" rel="shortcut icon">
-       	<script type="text/javascript" src="/classpath/jquery.js" id="jquery"></script>
-    	<script type="text/javascript" src="/classpath/json.js" id="json"></script>
-        <script src="/static/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js"></script>
-        <script type="text/javascript" src="/static/javascripts/tagselector.js"></script>
-        <style type="text/css">
-            #logo a {
-                color:#fff;
-            }
-        </style>
-    
-	
-</head>
-<body id="admin">
-        <div id="header">
-            <div id="logo">
-                <a href="/index">yabe.</a> <span>administration</span>
-            </div>
-            <ul id="tools">
-                <li>
-                    <a href="/logout">Log out</a>
-                </li>
-            </ul>
-        </div>
+<%- partial('header-admin.ejs', {}) %>
         
         <div id="main">
 <%- partial('admin-menu.ejs', {current: 'Posts'}) %>
@@ -54,196 +23,23 @@
 <th><a class="crudSortedAsc" href="#"><span>Posts</span></a></th>
 							</tr>
 						</thead>
-						<tbody><tr class="odd">
-							<td><a href="/admin/all_posts/edit/170">Hallo</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/157">Hello ALL</a></td>
-						</tr><tr class="odd">
-							<td>a href="/admin/all_posts/edit/6">Hello World</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/123">Hello world</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/134">Hello world!</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/133">Hello, I am  a spam bot</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/23">Here is the title</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/24">Here is the title</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/21">Here is the title eeer</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/124">Hi</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/147">Hi</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/135">Just a test</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/16">Lift </a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/153">Mumus</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/175">Nessie</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/57">Post Title</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/14">Scala</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/37">Super post</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/30">T</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/35">Test post</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/136">Test post</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/20">This is the post title asdfasdf</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/151">To be continued?</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/126">What up!</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/58">Why Yabe</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/36">Won33</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/152">Yabe is cool</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/155">Yet Another Post</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/61">Yet another blog engine</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/150">Yo there</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/130">a</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/169">a very new post</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/89">aaa</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/91">aaaatest</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/26">another test</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/31">asdasd</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/148">asdfsdf</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/161">bbvcbv</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/125">bla bla</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/178">dd</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/140">dfdfdff</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/127">dfsdfff</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/176">don</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/1">english now</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/156">erty</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/137">ewf</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/142">fg</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/128">fuuuu</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/60">hgfhfd</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/33">hjjhjhjhhj</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/19">jfdsjfl</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/139">jhjkhjkh</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/173">jo</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/129">k;lkl;k</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/25">lalala</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/177">my</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/11">nasgul</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/138">new post</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/13">nice job</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/174">nice title</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/179">normal</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/149">one mor</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/2">only test</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/4">repeat</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/5">repeat</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/158">ssddf</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/27">t1</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/131">test</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/145">test</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/154">test</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/3">test for AFL</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/146">test2</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/39">testing</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/132">testing</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/122">th</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/18">this the tile of the post</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/143">tiger uppercut</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/159">title</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/162">tr</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/32">ts</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/164">tset</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/59">w3qweef</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/9">yabe-lift 完成了！！</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/168">yet another post</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/160">zzzz</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/172">Привет!</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/141">يدعم العربي</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/144">哈哈</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/166">日本語</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/167">日本語！Japanese!!</a></td>
-						</tr><tr class="odd">
-							<td><a href="/admin/all_posts/edit/17">给力</a></td>
-						</tr><tr class="even">
-							<td><a href="/admin/all_posts/edit/163">테스트</a></td>
+                        <% for (var i=0; i<posts.length; i++) {
+                            var post = posts[i];
+                            %>
+    					<tbody>
+                        <% if (i%2==1) { %>
+                            <tr class="odd">
+                            <% } else { %>
+                            <tr class="even">
+                            <% } %>
+							<td><a href="/admin/posts/edit/<%= post._id %>"><%= post.title %></a></td>
 						</tr>
+                        <% } %>
 					</tbody></table>
 				</div>
 				
 				<div style="background-color:#314660; border:0px;" id="crudListPagination">
-					<p class="crudCount">94 Posts</p>
+					<p class="crudCount"><%= posts.length %> Posts</p>
 				</div>
 	
 				<p id="crudListAdd">
@@ -255,22 +51,4 @@
 </div>         
         </div>
         
-        <p id="footer">
-            Yabe is a (not so) powerful blog engine built with the 
-            <a href="http://liftweb.net/">liftweb framework</a>
-            as a tutorial application.
-        </p>
-        
-    
-
-<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
-
-	
-<script type="text/javascript">
-// <![CDATA[
-jQuery(document).ready(function() {liftAjax.lift_successRegisterGC();});
-var lift_page = "F154557648368ISUN2B";
-// ]]>
-</script></body>
-</html>  
-  
+<%- partial('footer.ejs', {}) %>

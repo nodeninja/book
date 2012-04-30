@@ -34,29 +34,7 @@
         <h3>
             Older posts <span class="from">from this blog</span>
         </h3>
-    <%
-    for (var i=1; i
-    <posts.length
-    ; i++) {
-    var post = posts[i];
-    %>
-    
-        <div class="post teaser">
-            <h2 class="post-title">
-                <a href="/read/<%= post._id %>" class="post-title-link"><%= post.title %> </a>
-            </h2>
-
-            <div class="post-metadata">
-                <span class="post-author">by <%= post.author %></span>,
-                <span class="post-date">
-                    <%= post.date %>
-                </span>
-                <span class="post-comments"> | <%= post.comments.length %> comments </span>
-            </div>
-        </div>    
-    <%
-    }
-    %>
+<%- partial('multiplePosts.ejs', {start: 1}) %>
 
 
     </div>

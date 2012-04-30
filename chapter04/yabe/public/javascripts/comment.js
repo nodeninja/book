@@ -50,7 +50,12 @@ function getTimestamp(id) {
                             data.comment.content +
             			'</div>' +
             		'</div>';
-                $('#comment-header').after(content);                
+                $('#comment-header').after(content);   
+                var numComments = parseInt($('#comment-header').text().split(" ")[0]) + 1;
+                if (numComments == 1)
+                    $('#comment-header').html(numComments + ' comment');
+                else
+                    $('#comment-header').html(numComments + ' comments');
             }
 
         

@@ -1,6 +1,6 @@
 <% if (everyauth.user.access == "superuser") { %>
 <ul class="adminMenu">
-    <li><% if (current != 'My posts') { %><a href="/admin/index/"> <% } else {%><span><% } %>My posts<% if (current != 'My posts') { %></a><% } else { %></span><% } %></li>    
+    <li><% if (current != 'My posts') { %><a href="/admin/posts/index"> <% } else {%><span><% } %>My posts<% if (current != 'My posts') { %></a><% } else { %></span><% } %></li>    
     <li><% if (current != 'Posts') { %><a href="/admin/all_posts/"> <% } else {%><span><% } %>Posts<% if (current != 'Posts') { %></a><% } else { %></span><% } %></li>
     <li><a href="/admin/tags/">Tags</a></li>
     <li><% if (current != 'Comments') { %><a href="/admin/comments/"> <% } else {%><span><% } %>Comments<% if (current != 'Comments') { %></a><% } else { %></span><% } %></li>

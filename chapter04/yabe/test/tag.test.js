@@ -27,7 +27,7 @@ suite('tag', function() {
         tagArray = tag.parseTags(tagName);
         tagArray[2].should.eql("on");
         tagArray[3].should.eql("more");
-                console.log(tagArray);
+           //     console.log(tagArray);
         
         
         done();

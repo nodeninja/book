@@ -15,15 +15,20 @@ exports.admin = function(req, res){
         res.redirect('/');
     }
     else    
-        res.render('admin', { title: 'YABE' }) 
+        res.render('admin', { title: 'YABE' });
 };
 
 exports.allPosts = function(req, res){
     if (undefined === req.user) {
         res.redirect('/');
     }
-    else    
-        res.render('all-posts', { title: 'YABE' }) 
+    else {    
+        post.getPosts(function(err, posts) {
+            if (err) handleError(err, req, res);
+            res.render('all-posts', { title: 'YABE', posts: posts}); 
+        });
+        
+    }
 };
 
 exports.comments = function(req, res){
@@ -155,6 +160,13 @@ exports.postNewPost = function(req, res){
 
 };
 
+exports.postsWithTags = function(req, res){
+    var tag = req.params.tag;
+    post.getPostByTag(tag, function(err, posts) {
+        res.render('postsWithTags', { title: 'YABE', tag: tag, posts: posts}); 
+    });
+        
+};
 
 exports.tags = function(req, res){
     if (undefined === req.user) {
@@ -196,5 +208,5 @@ function attachDate(mongoObject) {
 	return mongoObject;
 }
 function handleError(err, req, res) {
-	res.render('error', {title: 'YABE', error: err})
+	res.render('error', {title: 'YABE', error: err});
 }

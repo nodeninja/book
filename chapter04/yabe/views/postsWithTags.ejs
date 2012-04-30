@@ -1,0 +1,10 @@
+<%- partial('header.ejs', {}) %>
+    <div class="older-posts">
+        <h3>
+            These are posts tagged with '<%= tag %>'
+        </h3>
+
+<%- partial('multiplePosts.ejs', {posts: posts, start: 0}) %>
+    </div>
+</div>
+<%- partial('footer.ejs', {}) %>

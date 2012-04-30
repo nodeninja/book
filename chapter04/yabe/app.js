@@ -104,6 +104,9 @@ if (heroku) {
         io.set("polling duration", 10); 
     });
 }
+// Configure socket.io
+// reduce logging
+io.set('log level', 1);                    
 sio.setIO(io);
 
 // No layout for now
@@ -134,6 +137,7 @@ app.get('/admin/users', routes.users);
 app.get('/index', routes.index);
 app.get('/login', routes.login);
 app.get('/post/create', routes.create);
+app.get('/posts/:tag', routes.postsWithTags);
 app.get('/read/:id', routes.read);
 
 app.post('/admin/posts/add', routes.postNewPost);

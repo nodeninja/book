@@ -9,6 +9,7 @@
 var post = require("../lib/post");
 var assert = require("assert");
 var should = require('should');
+var _ = require('underscore');
 
 suite('post', function() {
 
@@ -17,12 +18,26 @@ suite('post', function() {
         var postId = '4f9d1070fef5ea7117000019';
         console.log('testing');
         post.addComment(postId, {author: 'blah3', content: 'comment'}, function(err) {
-          ////  console.log('***', num);
-           // should.exist(num);
             done();
         });
                 
         
+
+    });
+
+    test('getPostByTag should retrieve by tag', function(done) {
+
+        var tag = 'backbone';
+        post.getPostByTag(tag, function(err, posts) {
+            posts.length.should.be.above(0);
+            _.forEach(posts, function(post) {
+                should.not.exist(err);
+                
+                console.log(post);
+                
+            });
+            done();
+        });
 
     });
 

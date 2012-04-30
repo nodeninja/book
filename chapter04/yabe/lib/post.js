@@ -12,6 +12,7 @@ exports.addPost = addPost;
 exports.getNextPost = getNextPost;
 exports.getPostByAuthor = getPostByAuthor;
 exports.getPostById = getPostById;
+exports.getPostByTag = getPostByTag;
 exports.getPosts = getPosts;
 exports.getPreviousPost = getPreviousPost;
 exports.updatePost = updatePost;
@@ -87,6 +88,12 @@ function getPostById(id, callback) {
             if (null === doc) callback(null, null);
             else callback(null, doc);
         }
+    });
+}
+
+function getPostByTag(tag, callback) {
+    Post.find({ tags : tag }, function(err, posts) {
+        callback(err, posts);
     });
 }
 
