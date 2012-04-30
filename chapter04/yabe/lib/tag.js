@@ -10,24 +10,16 @@ var _ = require('underscore');
 exports.addTag = addTag;
 exports.addTags = addTags;
 exports.getTag = getTag;
+exports.getTagById = getTagById;
 exports.getTags = getTags;
 exports.parseTags = parseTags;
+exports.removeTag = removeTag;
+exports.updateTag = updateTag;
 
 // Add tag to database
 function addTag(tagName, callback) {
 
-    var instance = new Tag();
-    instance.tagName = tagName;
-
-    instance.save(function (err) {
-        if (err) {
-            callback(err);
-        }
-        else {
-            callback(null, instance);
-        }
-
-    });
+    Tag.update({tagName: tagName}, {tagName: tagName}, {upsert: true}, callback);
 
 }
 
@@ -62,6 +54,18 @@ function getTag(tagName, callback) {
     });
 }
 
+function getTagById(id, callback) {
+    Tag.findById(id, function(err, doc) {
+        if (err) {
+            callback(err);
+        }
+        else {
+            if (null === doc) callback(null, null);
+            else callback(null, doc);
+        }
+    });
+}
+
 function getTags(callback) {
     Tag.find({}, function(err, tags) {
         if (err) {
@@ -81,4 +85,19 @@ function parseTags(tagString) {
         tagArray.push(tag);
     });
     return tagArray;    
+}
+
+function removeTag(id, callback) {
+    getTagById(id, function(err, tag) {
+        if (tag) tag.remove();
+        callback(err, tag);
+    });
+}
+
+function updateTag(oldTag, newTag, callback) {
+    getTag(oldTag, function(err, tag) {
+        if (tag) tag.tagName = newTag;
+        tag.save(callback);
+        
+    });
 }

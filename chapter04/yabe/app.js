@@ -133,6 +133,7 @@ app.get('/admin/posts/edit/:postId', routes.editPost);
 app.get('/admin/posts/index', routes.admin);
 app.get('/admin/tags', routes.tags);
 app.get('/admin/tags/add', routes.tagsAdd);
+app.get('/admin/tags/edit/:id', routes.tags_edit);
 app.get('/admin/users', routes.users);
 app.get('/index', routes.index);
 app.get('/login', routes.login);
@@ -142,6 +143,8 @@ app.get('/read/:id', routes.read);
 
 app.post('/admin/posts/add', routes.postNewPost);
 app.post('/comment', routes.postComment);
+app.post('/delete-tag', routes.delete_tag);
+app.post('/update-tag', routes.update_tag);
 
 var port = process.env.PORT || 3000;
 app.listen(port);

@@ -16,7 +16,7 @@ suite('post', function() {
     test('addComment should add comment', function(done) {
 
         var postId = '4f9d1070fef5ea7117000019';
-        console.log('testing');
+        //console.log('testing');
         post.addComment(postId, {author: 'blah3', content: 'comment'}, function(err) {
             done();
         });
@@ -27,19 +27,42 @@ suite('post', function() {
 
     test('getPostByTag should retrieve by tag', function(done) {
 
-        var tag = 'backbone';
+        var tag = 'Node.js';
         post.getPostByTag(tag, function(err, posts) {
             posts.length.should.be.above(0);
             _.forEach(posts, function(post) {
                 should.not.exist(err);
                 
-                console.log(post);
+              //  console.log(post);
                 
             });
             done();
         });
 
     });
+    
+
+    test('removeTag should retrieve by tag', function(done) {
+
+        var id = '4f9db8572835a8451d000349';
+        var tag = 'IBC';
+        post.removeTag(id, tag, function(err) {
+            should.not.exist(err);
+            done();
+        });
+    });   
+
+
+    test('rename tag', function(done) {
+
+        post.renameTag('4f9d1070fef5ea7117000019', 'blah', "New", function(err) {
+            should.not.exist(err);
+            console.log("renameb");
+            done();
+        });       
+        
+
+    }); 
 
 
 

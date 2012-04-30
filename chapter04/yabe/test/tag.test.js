@@ -12,6 +12,27 @@ var should = require('should');
 
 suite('tag', function() {
 
+    test('addTag should addtags', function(done) {
+
+        tag.addTag('dummy tag', function(err, doc) {
+            should.not.exist(err);
+            done();
+        });       
+        
+
+    });
+    
+    test('remove tag', function(done) {
+
+        tag.removeTag('4f9e5ca21f7fc99958cd77a6', function(err, tag) {
+            should.not.exist(err);
+            done();
+        });       
+        
+
+    });
+
+    
     test('parseTag should parse tags', function(done) {
 
         var tagName = "my, tags are, in here";

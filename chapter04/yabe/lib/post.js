@@ -6,6 +6,7 @@
 
 var Post = require('../models/Post');
 var tag = require('./tag');
+var _ = require('underscore');
 
 exports.addComment = addComment;
 exports.addPost = addPost;
@@ -15,9 +16,9 @@ exports.getPostById = getPostById;
 exports.getPostByTag = getPostByTag;
 exports.getPosts = getPosts;
 exports.getPreviousPost = getPreviousPost;
+exports.removeTag = removeTag;
+exports.renameTag = renameTag;
 exports.updatePost = updatePost;
-
-
 
 function addComment(id, comment, callback) {
     Post.update({_id: id}, {$push: {comments: comment}}, callback);
@@ -103,6 +104,33 @@ function getPosts(callback) {
 
 function getPreviousPost(id, callback) {
     Post.find().where('_id').$lt(id).desc('_id').limit(1).run(callback);
+}
+
+function removeTag(id, tagName, callback) {
+    Post.findById(id, function(err, post) {
+       
+        for (var i=0; i<post.tags.length; i++) {
+            if (post.tags[i] == tagName) {
+                post.tags = _.filter(post.tags, function(tag) {return tag != tagName;});              
+            }
+        }
+        post.save(callback);
+    });
+}
+
+function renameTag(id, oldTag, newTag, callback) {
+    
+    function map(tag) { if (tag == oldTag) return newTag; else return tag;}
+    Post.findById(id, function(err, post) {
+       
+        for (var i=0; i<post.tags.length; i++) {
+            if (post.tags[i] == oldTag) {                
+                post.tags = _.map(post.tags, map);   
+            }
+        }
+        console.log(post.tags);
+        post.save(callback);
+    });
 }
 
 function updatePost(post, callback) {

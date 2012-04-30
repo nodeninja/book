@@ -43,6 +43,27 @@ exports.create = function(req, res){
   res.render('create', { title: 'YABE' })
 };
 
+exports.delete_tag = function(req, res){
+    if (undefined === req.user || req.user.access != 'superuser') {
+        res.redirect('/');
+    }
+    else {
+        var id = req.body.id;
+        tag.removeTag(id, function(err, tag) {
+            post.getPostByTag(req.body.tagName, function(err, posts) {
+                var count = 0;
+                _.forEach(posts, function(myPost) {
+                    post.removeTag(myPost._id, req.body.tagName, function(err) {
+                        count++;
+                        if (count >= posts.length) res.redirect('/admin/tags');
+                    })
+                });
+            });
+            
+        });
+    }    
+        
+};
 
 exports.editPost = function(req, res){
   post.getPostById(req.params.postId, function(err, post) {
@@ -191,6 +212,44 @@ exports.tagsAdd = function(req, res){
     else {
         res.render('tagsAdd', { title: 'YABE'});
     }  
+        
+};
+
+exports.tags_edit = function(req, res){
+    if (undefined === req.user) {
+        res.redirect('/');
+    }
+    else {
+        var id = req.params.id;
+        tag.getTagById(id, function(err, tag) {
+            res.render('tags_edit', { title: 'YABE', tag: tag});
+        });
+        
+    }  
+        
+};
+
+
+exports.update_tag = function(req, res){
+    if (undefined === req.user || req.user.access != 'superuser') {
+        res.redirect('/');
+    }
+    else {
+        var myTag = req.body.tagName;
+        var newTag = req.body.newTagName;
+        tag.updateTag(myTag, newTag, function(err, doc) {
+            post.getPostByTag(req.body.tagName, function(err, posts) {
+                var count = 0;
+                _.forEach(posts, function(myPost) {
+                    post.renameTag(myPost._id, myTag, newTag, function(err) {
+                        count++;
+                        if (count >= posts.length) res.redirect('/admin/tags');
+                    })
+                });
+            });            
+            
+        });
+    }    
         
 };
 
