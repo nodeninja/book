@@ -74,12 +74,12 @@ exports.editPost = function(req, res){
 };
 
 
-exports.index = function(req, res){
+exports.index = function(req, res, next){
     post.getPosts(function(err, posts) {
-    	if (err) handleError(err, req, res);
-    	_.forEach(posts, function(post) {
+        if (err) next(err);
+        _.forEach(posts, function(post) {
     		post.date = lib.getTimestamp(post._id).toDateString();
-    	});
+        });
     	res.render('index', { title: 'YABE', posts: posts});
     });
   
@@ -189,6 +189,21 @@ exports.postsWithTags = function(req, res){
         
 };
 
+exports.search_tags = function(req, res) {
+    if (undefined == req.user || req.user.access != 'superuser') {
+        res.redirect('/');
+    }
+    else {
+        tag.searchTags(req.body.searchString, function(err, tags) {
+            if (err) {
+                console.log('tag error');
+                throw err;
+            }
+			res.render('tags', { title: 'YABE', tags: tags});
+        });
+    }      
+}
+
 exports.tags = function(req, res){
     if (undefined === req.user) {
         res.redirect('/');
@@ -267,5 +282,6 @@ function attachDate(mongoObject) {
 	return mongoObject;
 }
 function handleError(err, req, res) {
+    console.log('generic error handler called');
 	res.render('error', {title: 'YABE', error: err});
 }

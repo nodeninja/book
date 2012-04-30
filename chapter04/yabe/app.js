@@ -142,9 +142,15 @@ app.get('/posts/:tag', routes.postsWithTags);
 app.get('/read/:id', routes.read);
 
 app.post('/admin/posts/add', routes.postNewPost);
+app.post('/admin/tags', routes.search_tags);
 app.post('/comment', routes.postComment);
 app.post('/delete-tag', routes.delete_tag);
 app.post('/update-tag', routes.update_tag);
+
+app.use(function(err, req, res, next) {
+  console.log('top level error');
+  res.render('error', { title: 'YABE' });
+});
 
 var port = process.env.PORT || 3000;
 app.listen(port);

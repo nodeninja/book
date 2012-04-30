@@ -1,34 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" xml:lang="en">
-<head>
-    <title>Administration</title>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <link href="/stylesheets/style.css" media="screen" type="text/css" rel="stylesheet">
-    <link href="/stylesheets/crudify.css" media="screen" type="text/css" rel="stylesheet">
-    <link href="/static/images/favicon.png" type="image/png" rel="shortcut icon">
-    <script type="text/javascript" src="/classpath/jquery.js" id="jquery"></script>
-    <script type="text/javascript" src="/classpath/json.js" id="json"></script>
-    <script src="/static/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js"></script>
-    <script type="text/javascript" src="/static/javascripts/tagselector.js"></script>
-    <style type="text/css">
-        #logo a {
-            color: #fff;
-        }
-    </style>
-
-
-</head>
-<body id="admin">
-<div id="header">
-    <div id="logo">
-        <a href="/index">yabe.</a> <span>administration</span>
-    </div>
-    <ul id="tools">
-        <li>
-            <a href="/logout">Log out</a>
-        </li>
-    </ul>
-</div>
+<%- partial('header-admin.ejs', {}) %>
 
 <div id="main">
     <ul class="adminMenu">
@@ -47,7 +17,7 @@
 
                     <div style="background-color:#314660; border:0px;" id="crudListSearch">
                         <form action="/admin/tags/" method="post">
-                            <input name="F154557648633USSNQY" type="text" value="">
+                            <input name="searchString" type="text" value="">
                             <input value="Search" type="submit">
                         </form>
                     </div>
@@ -111,24 +81,5 @@
     </div>
 </div>
 
-<p id="footer">
-    Yabe is a (not so) powerful blog engine built with the
-    <a href="http://liftweb.net/">liftweb framework</a>
-    as a tutorial application.
-</p>
-
-
-<script type="text/javascript" src="/ajax_request/liftAjax.js"></script>
-
-
-<script type="text/javascript">
-    // <![CDATA[
-    jQuery(document).ready(function () {
-        liftAjax.lift_successRegisterGC();
-    });
-    var lift_page = "F154557648632YSHDL3";
-    // ]]>
-</script>
-</body>
-</html>  
+<%- partial('footer.ejs', {}) %>
   

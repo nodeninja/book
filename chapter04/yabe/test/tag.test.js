@@ -9,6 +9,7 @@
 var tag = require("../lib/tag");
 var assert = require("assert");
 var should = require('should');
+var _ = require('underscore');
 
 suite('tag', function() {
 
@@ -52,6 +53,17 @@ suite('tag', function() {
         
         
         done();
+
+    });
+
+    test('search tag', function(done) {
+
+        tag.searchTags('on', function(err, tags) {
+            should.not.exist(err);
+            _.forEach(tags, function(tag) { console.log(tag);});
+            done();
+        });       
+        
 
     });
 

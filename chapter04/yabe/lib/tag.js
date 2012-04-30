@@ -14,6 +14,7 @@ exports.getTagById = getTagById;
 exports.getTags = getTags;
 exports.parseTags = parseTags;
 exports.removeTag = removeTag;
+exports.searchTags = searchTags;
 exports.updateTag = updateTag;
 
 // Add tag to database
@@ -92,6 +93,11 @@ function removeTag(id, callback) {
         if (tag) tag.remove();
         callback(err, tag);
     });
+}
+
+function searchTags(searchString, callback) {
+    var patt = new RegExp(searchString);
+    Tag.find({tagName:patt}, callback);
 }
 
 function updateTag(oldTag, newTag, callback) {
